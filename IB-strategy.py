@@ -1,6 +1,4 @@
-#from streamlit_option_menu import option_menu
 from datetime import datetime, timedelta, date
-from selenium import webdriver
 from IB_utils import *
 from io import BytesIO
 from pyxlsb import open_workbook as open_xlsb
@@ -45,15 +43,6 @@ def to_excel(df):
 ## 02. layout
 st.set_page_config(layout='wide')
 
-#with st.sidebar:
-#    selected = option_menu("Menu", ["IB전략컨설팅부"],
-#                           icons=['card-list'],
-#                           menu_icon='cast', default_index=0,
-#                          styles={
-#                              "nav-link-selected": {"background-color": "#1c82e1"}
-#                          })
-
-
 st.header('IB전략컨설팅부 - IPO 현황 수집')
 
 c1, c2 = st.columns(2)
@@ -82,7 +71,8 @@ if start_btn:
     
     output = BytesIO()
     
-    with pd.ExcelWriter(data_path + "ib-strategy-data.xlsx", engine = 'xlsxwriter') as writer:
+    #with pd.ExcelWriter(data_path + "ib-strategy-data.xlsx", engine = 'xlsxwriter') as writer:
+    with pd.ExcelWriter(output, engine = 'xlsxwriter') as writer:
         head_df.to_excel(writer, sheet_name="01_IB전략컨설팅부", index=False)
         output_df.to_excel(writer, sheet_name="02_38커뮤니케이션(최근일자기준)", index=False)
         
