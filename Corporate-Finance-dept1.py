@@ -1,6 +1,4 @@
-from streamlit_option_menu import option_menu
 from datetime import datetime, timedelta, date
-from selenium import webdriver
 from utils import *
 from io import BytesIO
 from pyxlsb import open_workbook as open_xlsb
@@ -51,15 +49,6 @@ def to_excel(df):
 
 ## 02. layout
 st.set_page_config(layout='wide')
-
-with st.sidebar:
-    selected = option_menu("Menu", ["기업금융1부"],
-                           icons=['card-list'],
-                           menu_icon='cast', default_index=0,
-                          styles={
-                              "nav-link-selected": {"background-color": "#1c82e1"}
-                          })
-
 st.header('기업금융1부 - IPO 현황 수집')
 
 c1, c2 = st.columns(2)
